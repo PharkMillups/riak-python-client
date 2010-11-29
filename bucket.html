@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RiakBucket &mdash; Riak (Python binding) v1.1.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Riak (Python binding) v1.1.1 documentation" href="index.html" />
+    <link rel="prev" title="RiakClient" href="client.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="client.html" title="RiakClient"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Riak (Python binding) v1.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="riakbucket">
+<h1>RiakBucket<a class="headerlink" href="#riakbucket" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> object allows you to access and change information about a
+Riak bucket, and provides methods to create or retrieve objects within the bucket.</p>
+<div class="section" id="riakbucket-methods">
+<h2>RiakBucket Methods<a class="headerlink" href="#riakbucket-methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="init">
+<h3><tt class="docutils literal"><span class="pre">__init__</span></tt><a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.__init__">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">__init__</tt><big>(</big><em>self</em>, <em>client</em>, <em>name</em><big>)</big><a class="headerlink" href="#RiakBucket.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a new <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> instance. The <tt class="docutils literal"><span class="pre">client</span></tt> argument should be a
+<tt class="docutils literal"><span class="pre">RiakClient</span></tt> instance and the <tt class="docutils literal"><span class="pre">name</span></tt> argument should be the bucket name as
+a string.</p>
+</div>
+<div class="section" id="get-name">
+<h3><tt class="docutils literal"><span class="pre">get_name</span></tt><a class="headerlink" href="#get-name" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_name">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_name</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the bucket name as a string.</p>
+</div>
+<div class="section" id="get-r">
+<h3><tt class="docutils literal"><span class="pre">get_r</span></tt><a class="headerlink" href="#get-r" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_r">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_r</tt><big>(</big><em>self</em>, <em>r=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get_r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the R-value for this bucket, if it is set. If not set, it will return
+the R-value for the client as an integer.</p>
+</div>
+<div class="section" id="set-r">
+<h3><tt class="docutils literal"><span class="pre">set_r</span></tt><a class="headerlink" href="#set-r" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_r">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_r</tt><big>(</big><em>self</em>, <em>r</em><big>)</big><a class="headerlink" href="#RiakBucket.set_r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the R-value for this bucket. <tt class="docutils literal"><span class="pre">RiakBucket.get</span></tt> and
+<tt class="docutils literal"><span class="pre">RiakBucket.get_binary</span></tt> operations that do not specify an R-value will use
+this value.</p>
+<p>Accepts an integer for the <tt class="docutils literal"><span class="pre">r</span></tt> value. Returns the <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> instance.</p>
+</div>
+<div class="section" id="get-w">
+<h3><tt class="docutils literal"><span class="pre">get_w</span></tt><a class="headerlink" href="#get-w" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_w">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_w</tt><big>(</big><em>self</em>, <em>w=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get_w" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the W-value for this bucket, if it is set. If not set, it will return
+the W-value for the client as an integer.</p>
+</div>
+<div class="section" id="set-w">
+<h3><tt class="docutils literal"><span class="pre">set_w</span></tt><a class="headerlink" href="#set-w" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_w">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_w</tt><big>(</big><em>self</em>, <em>w</em><big>)</big><a class="headerlink" href="#RiakBucket.set_w" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the W-value for this bucket. See <tt class="docutils literal"><span class="pre">RiakBucket.set_r</span></tt> for more information.</p>
+<p>Accepts an integer for the <tt class="docutils literal"><span class="pre">w</span></tt> value. Returns the <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> instance.</p>
+</div>
+<div class="section" id="get-dw">
+<h3><tt class="docutils literal"><span class="pre">get_dw</span></tt><a class="headerlink" href="#get-dw" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_dw">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_dw</tt><big>(</big><em>self</em>, <em>dw=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get_dw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the DW-value for this bucket, if it is set. If not set, it will return
+the DW-value for the client as an integer.</p>
+</div>
+<div class="section" id="set-dw">
+<h3><tt class="docutils literal"><span class="pre">set_dw</span></tt><a class="headerlink" href="#set-dw" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_dw">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_dw</tt><big>(</big><em>self</em>, <em>dw</em><big>)</big><a class="headerlink" href="#RiakBucket.set_dw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the DW-value for this bucket. See <tt class="docutils literal"><span class="pre">RiakBucket.set_r</span></tt> for more
+information.</p>
+<p>Accepts an integer for the <tt class="docutils literal"><span class="pre">dw</span></tt> value. Returns the <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> instance.</p>
+</div>
+<div class="section" id="get-rw">
+<h3><tt class="docutils literal"><span class="pre">get_rw</span></tt><a class="headerlink" href="#get-rw" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_rw">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_rw</tt><big>(</big><em>self</em>, <em>rw=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get_rw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the RW-value for this bucket, if it is set. If not set, it will return
+the RW-value for the client as an integer.</p>
+</div>
+<div class="section" id="set-rw">
+<h3><tt class="docutils literal"><span class="pre">set_rw</span></tt><a class="headerlink" href="#set-rw" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_rw">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_rw</tt><big>(</big><em>self</em>, <em>rw</em><big>)</big><a class="headerlink" href="#RiakBucket.set_rw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the RW-value for this bucket. See <tt class="docutils literal"><span class="pre">RiakBucket.set_r</span></tt> for more
+information.</p>
+<p>Accepts an integer for the <tt class="docutils literal"><span class="pre">rw</span></tt> value. Returns the <tt class="docutils literal"><span class="pre">RiakBucket</span></tt> instance.</p>
+</div>
+<div class="section" id="get-encoder">
+<h3><tt class="docutils literal"><span class="pre">get_encoder</span></tt><a class="headerlink" href="#get-encoder" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_encoder">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_encoder</tt><big>(</big><em>self</em>, <em>content_type</em><big>)</big><a class="headerlink" href="#RiakBucket.get_encoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the encoding function for the provided content type for this bucket.</p>
+</div>
+<div class="section" id="set-encoder">
+<h3><tt class="docutils literal"><span class="pre">set_encoder</span></tt><a class="headerlink" href="#set-encoder" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_encoder">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_encoder</tt><big>(</big><em>self</em>, <em>content_type</em>, <em>encoder</em><big>)</big><a class="headerlink" href="#RiakBucket.set_encoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the encoding function for the provided content type for this bucket.
+The <tt class="docutils literal"><span class="pre">encoder</span></tt> argument should be a callable.</p>
+</div>
+<div class="section" id="get-decoder">
+<h3><tt class="docutils literal"><span class="pre">get_decoder</span></tt><a class="headerlink" href="#get-decoder" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_decoder">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_decoder</tt><big>(</big><em>self</em>, <em>content_type</em><big>)</big><a class="headerlink" href="#RiakBucket.get_decoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets the decoding function for the provided content type for this bucket.</p>
+</div>
+<div class="section" id="set-decoder">
+<h3><tt class="docutils literal"><span class="pre">set_decoder</span></tt><a class="headerlink" href="#set-decoder" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_decoder">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_decoder</tt><big>(</big><em>self</em>, <em>content_type</em>, <em>decoder</em><big>)</big><a class="headerlink" href="#RiakBucket.set_decoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the decoding function for the provided content type for this bucket. The
+<tt class="docutils literal"><span class="pre">decoder</span></tt> argument should be a callable.</p>
+</div>
+<div class="section" id="new">
+<h3><tt class="docutils literal"><span class="pre">new</span></tt><a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.new">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">new</tt><big>(</big><em>self</em>, <em>key</em>, <em>data=None</em>, <em>content_type='application/json'</em><big>)</big><a class="headerlink" href="#RiakBucket.new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Creates a new <tt class="docutils literal"><span class="pre">RiakObject</span></tt> that will be stored as JSON. A shortcut for
+manually instantiating a <tt class="docutils literal"><span class="pre">RiakObject</span></tt>. The <tt class="docutils literal"><span class="pre">key</span></tt> argument should be a
+string.</p>
+<p>The <tt class="docutils literal"><span class="pre">data</span></tt> should be a JSON-encodable structure (usually a Python dictionary).</p>
+<p>Returns the <tt class="docutils literal"><span class="pre">RiakObject</span></tt> instance.</p>
+</div>
+<div class="section" id="new-binary">
+<h3><tt class="docutils literal"><span class="pre">new_binary</span></tt><a class="headerlink" href="#new-binary" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.new_binary">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">new_binary</tt><big>(</big><em>self</em>, <em>key</em>, <em>data</em>, <em>content_type='application/octet-stream'</em><big>)</big><a class="headerlink" href="#RiakBucket.new_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Create a new Riak object that will be stored as plain text/binary.</p>
+<p>Creates a new <tt class="docutils literal"><span class="pre">RiakObject</span></tt> that will be stored as plain text/binary. A
+shortcut for manually instantiating a <tt class="docutils literal"><span class="pre">RiakObject</span></tt>. The <tt class="docutils literal"><span class="pre">key</span></tt> argument
+should be a string.</p>
+<p>The <tt class="docutils literal"><span class="pre">data</span></tt> should be a plain text/binary string.</p>
+<p>The <tt class="docutils literal"><span class="pre">content_type</span></tt> argument should be the MIME type of the content. The
+default is <tt class="docutils literal"><span class="pre">application/octet-stream</span></tt>.</p>
+<p>Returns the <tt class="docutils literal"><span class="pre">RiakObject</span></tt> instance.</p>
+</div>
+<div class="section" id="get">
+<h3><tt class="docutils literal"><span class="pre">get</span></tt><a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get</tt><big>(</big><em>self</em>, <em>key</em>, <em>r=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieve a JSON-encoded object from Riak. The <tt class="docutils literal"><span class="pre">key</span></tt> should be a string.</p>
+<p>The optional <tt class="docutils literal"><span class="pre">r</span></tt> is the R-value of the request. Defaults to the bucket&#8217;s
+R-value if not provided.</p>
+<p>Returns the <tt class="docutils literal"><span class="pre">RiakObject</span></tt> instance.</p>
+</div>
+<div class="section" id="get-binary">
+<h3><tt class="docutils literal"><span class="pre">get_binary</span></tt><a class="headerlink" href="#get-binary" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_binary">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_binary</tt><big>(</big><em>self</em>, <em>key</em>, <em>r=None</em><big>)</big><a class="headerlink" href="#RiakBucket.get_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieve a binary object/string from Riak. The <tt class="docutils literal"><span class="pre">key</span></tt> should be a string.</p>
+<p>The optional <tt class="docutils literal"><span class="pre">r</span></tt> is the R-value of the request. Defaults to the bucket&#8217;s
+R-value if not provided.</p>
+<p>Returns the <tt class="docutils literal"><span class="pre">RiakObject</span></tt> instance.</p>
+</div>
+<div class="section" id="set-n-val">
+<h3><tt class="docutils literal"><span class="pre">set_n_val</span></tt><a class="headerlink" href="#set-n-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_n_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_n_val</tt><big>(</big><em>self</em>, <em>nval</em><big>)</big><a class="headerlink" href="#RiakBucket.set_n_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the N-value for this bucket, which is the number of replicas that will be
+written of each object in the bucket. Accepts the <tt class="docutils literal"><span class="pre">nval</span></tt> as an integer.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Set this once before you write any data to the bucket and never change it
+again. Unpredictable things could happen if you subsequently change it. This
+method should only be used if you know what you are doing.</p>
+</div>
+</div>
+<div class="section" id="get-n-val">
+<h3><tt class="docutils literal"><span class="pre">get_n_val</span></tt><a class="headerlink" href="#get-n-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_n_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_n_val</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_n_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieves the N-value as an integer for this bucket.</p>
+</div>
+<div class="section" id="set-default-r-val">
+<h3><tt class="docutils literal"><span class="pre">set_default_r_val</span></tt><a class="headerlink" href="#set-default-r-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_default_r_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_default_r_val</tt><big>(</big><em>self</em>, <em>rval</em><big>)</big><a class="headerlink" href="#RiakBucket.set_default_r_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="get-default-r-val">
+<h3><tt class="docutils literal"><span class="pre">get_default_r_val</span></tt><a class="headerlink" href="#get-default-r-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_default_r_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_default_r_val</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_default_r_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="set-default-w-val">
+<h3><tt class="docutils literal"><span class="pre">set_default_w_val</span></tt><a class="headerlink" href="#set-default-w-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_default_w_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_default_w_val</tt><big>(</big><em>self</em>, <em>wval</em><big>)</big><a class="headerlink" href="#RiakBucket.set_default_w_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="get-default-w-val">
+<h3><tt class="docutils literal"><span class="pre">get_default_w_val</span></tt><a class="headerlink" href="#get-default-w-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_default_w_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_default_w_val</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_default_w_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="set-default-dw-val">
+<h3><tt class="docutils literal"><span class="pre">set_default_dw_val</span></tt><a class="headerlink" href="#set-default-dw-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_default_dw_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_default_dw_val</tt><big>(</big><em>self</em>, <em>dwval</em><big>)</big><a class="headerlink" href="#RiakBucket.set_default_dw_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="get-default-dw-val">
+<h3><tt class="docutils literal"><span class="pre">get_default_dw_val</span></tt><a class="headerlink" href="#get-default-dw-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_default_dw_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_default_dw_val</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_default_dw_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="set-default-rw-val">
+<h3><tt class="docutils literal"><span class="pre">set_default_rw_val</span></tt><a class="headerlink" href="#set-default-rw-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_default_rw_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_default_rw_val</tt><big>(</big><em>self</em>, <em>rwval</em><big>)</big><a class="headerlink" href="#RiakBucket.set_default_rw_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="get-default-rw-val">
+<h3><tt class="docutils literal"><span class="pre">get_default_rw_val</span></tt><a class="headerlink" href="#get-default-rw-val" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_default_rw_val">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_default_rw_val</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_default_rw_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="set-allow-multiples">
+<h3><tt class="docutils literal"><span class="pre">set_allow_multiples</span></tt><a class="headerlink" href="#set-allow-multiples" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_allow_multiples">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_allow_multiples</tt><big>(</big><em>self</em>, <em>bool</em><big>)</big><a class="headerlink" href="#RiakBucket.set_allow_multiples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If set to <tt class="xref docutils literal"><span class="pre">True</span></tt>, writes with conflicting data will be stored and returned
+to the client. This situation can be detected by calling
+<tt class="docutils literal"><span class="pre">RiakObject.has_siblings</span></tt> and <tt class="docutils literal"><span class="pre">RiakObject.get_siblings</span></tt>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This should only be used if you know what you are doing, as it can lead to
+unexpected results.</p>
+</div>
+</div>
+<div class="section" id="get-allow-multiples">
+<h3><tt class="docutils literal"><span class="pre">get_allow_multiples</span></tt><a class="headerlink" href="#get-allow-multiples" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_allow_multiples">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_allow_multiples</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_allow_multiples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieves the <tt class="docutils literal"><span class="pre">allow</span> <span class="pre">multiples</span></tt> setting. Returns <tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt>.</p>
+</div>
+<div class="section" id="set-property">
+<h3><tt class="docutils literal"><span class="pre">set_property</span></tt><a class="headerlink" href="#set-property" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_property">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_property</tt><big>(</big><em>self</em>, <em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#RiakBucket.set_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets a property on the bucket. The <tt class="docutils literal"><span class="pre">key</span></tt> should be the property name as a
+string. The <tt class="docutils literal"><span class="pre">value</span></tt> can be of mixed type.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This should only be used if you know what you are doing.</p>
+</div>
+</div>
+<div class="section" id="get-bool-property">
+<h3><tt class="docutils literal"><span class="pre">get_bool_property</span></tt><a class="headerlink" href="#get-bool-property" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_bool_property">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_bool_property</tt><big>(</big><em>self</em>, <em>key</em><big>)</big><a class="headerlink" href="#RiakBucket.get_bool_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Gets a boolean property on the bucket. Converts to a <tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt>
+value.</p>
+</div>
+<div class="section" id="get-property">
+<h3><tt class="docutils literal"><span class="pre">get_property</span></tt><a class="headerlink" href="#get-property" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_property">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_property</tt><big>(</big><em>self</em>, <em>key</em><big>)</big><a class="headerlink" href="#RiakBucket.get_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieves a property on the bucket. The return value will be of mixed type.</p>
+</div>
+<div class="section" id="set-properties">
+<h3><tt class="docutils literal"><span class="pre">set_properties</span></tt><a class="headerlink" href="#set-properties" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.set_properties">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">set_properties</tt><big>(</big><em>self</em>, <em>props</em><big>)</big><a class="headerlink" href="#RiakBucket.set_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets multiple properties on the bucket in one call. The <tt class="docutils literal"><span class="pre">props</span></tt> argument
+should be a dictionary of property names/values to be set.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This should only be used if you know what you are doing.</p>
+</div>
+</div>
+<div class="section" id="get-properties">
+<h3><tt class="docutils literal"><span class="pre">get_properties</span></tt><a class="headerlink" href="#get-properties" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_properties">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_properties</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retrieve a dictionary of all bucket properties.</p>
+</div>
+<div class="section" id="get-keys">
+<h3><tt class="docutils literal"><span class="pre">get_keys</span></tt><a class="headerlink" href="#get-keys" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RiakBucket.get_keys">
+<tt class="descclassname">RiakBucket.</tt><tt class="descname">get_keys</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#RiakBucket.get_keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns all keys within the bucket.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">At current, this is a very expensive operation. Use with caution.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RiakBucket</a><ul>
+<li><a class="reference internal" href="#riakbucket-methods">RiakBucket Methods</a><ul>
+<li><a class="reference internal" href="#init"><tt class="docutils literal"><span class="pre">__init__</span></tt></a></li>
+<li><a class="reference internal" href="#get-name"><tt class="docutils literal"><span class="pre">get_name</span></tt></a></li>
+<li><a class="reference internal" href="#get-r"><tt class="docutils literal"><span class="pre">get_r</span></tt></a></li>
+<li><a class="reference internal" href="#set-r"><tt class="docutils literal"><span class="pre">set_r</span></tt></a></li>
+<li><a class="reference internal" href="#get-w"><tt class="docutils literal"><span class="pre">get_w</span></tt></a></li>
+<li><a class="reference internal" href="#set-w"><tt class="docutils literal"><span class="pre">set_w</span></tt></a></li>
+<li><a class="reference internal" href="#get-dw"><tt class="docutils literal"><span class="pre">get_dw</span></tt></a></li>
+<li><a class="reference internal" href="#set-dw"><tt class="docutils literal"><span class="pre">set_dw</span></tt></a></li>
+<li><a class="reference internal" href="#get-rw"><tt class="docutils literal"><span class="pre">get_rw</span></tt></a></li>
+<li><a class="reference internal" href="#set-rw"><tt class="docutils literal"><span class="pre">set_rw</span></tt></a></li>
+<li><a class="reference internal" href="#get-encoder"><tt class="docutils literal"><span class="pre">get_encoder</span></tt></a></li>
+<li><a class="reference internal" href="#set-encoder"><tt class="docutils literal"><span class="pre">set_encoder</span></tt></a></li>
+<li><a class="reference internal" href="#get-decoder"><tt class="docutils literal"><span class="pre">get_decoder</span></tt></a></li>
+<li><a class="reference internal" href="#set-decoder"><tt class="docutils literal"><span class="pre">set_decoder</span></tt></a></li>
+<li><a class="reference internal" href="#new"><tt class="docutils literal"><span class="pre">new</span></tt></a></li>
+<li><a class="reference internal" href="#new-binary"><tt class="docutils literal"><span class="pre">new_binary</span></tt></a></li>
+<li><a class="reference internal" href="#get"><tt class="docutils literal"><span class="pre">get</span></tt></a></li>
+<li><a class="reference internal" href="#get-binary"><tt class="docutils literal"><span class="pre">get_binary</span></tt></a></li>
+<li><a class="reference internal" href="#set-n-val"><tt class="docutils literal"><span class="pre">set_n_val</span></tt></a></li>
+<li><a class="reference internal" href="#get-n-val"><tt class="docutils literal"><span class="pre">get_n_val</span></tt></a></li>
+<li><a class="reference internal" href="#set-default-r-val"><tt class="docutils literal"><span class="pre">set_default_r_val</span></tt></a></li>
+<li><a class="reference internal" href="#get-default-r-val"><tt class="docutils literal"><span class="pre">get_default_r_val</span></tt></a></li>
+<li><a class="reference internal" href="#set-default-w-val"><tt class="docutils literal"><span class="pre">set_default_w_val</span></tt></a></li>
+<li><a class="reference internal" href="#get-default-w-val"><tt class="docutils literal"><span class="pre">get_default_w_val</span></tt></a></li>
+<li><a class="reference internal" href="#set-default-dw-val"><tt class="docutils literal"><span class="pre">set_default_dw_val</span></tt></a></li>
+<li><a class="reference internal" href="#get-default-dw-val"><tt class="docutils literal"><span class="pre">get_default_dw_val</span></tt></a></li>
+<li><a class="reference internal" href="#set-default-rw-val"><tt class="docutils literal"><span class="pre">set_default_rw_val</span></tt></a></li>
+<li><a class="reference internal" href="#get-default-rw-val"><tt class="docutils literal"><span class="pre">get_default_rw_val</span></tt></a></li>
+<li><a class="reference internal" href="#set-allow-multiples"><tt class="docutils literal"><span class="pre">set_allow_multiples</span></tt></a></li>
+<li><a class="reference internal" href="#get-allow-multiples"><tt class="docutils literal"><span class="pre">get_allow_multiples</span></tt></a></li>
+<li><a class="reference internal" href="#set-property"><tt class="docutils literal"><span class="pre">set_property</span></tt></a></li>
+<li><a class="reference internal" href="#get-bool-property"><tt class="docutils literal"><span class="pre">get_bool_property</span></tt></a></li>
+<li><a class="reference internal" href="#get-property"><tt class="docutils literal"><span class="pre">get_property</span></tt></a></li>
+<li><a class="reference internal" href="#set-properties"><tt class="docutils literal"><span class="pre">set_properties</span></tt></a></li>
+<li><a class="reference internal" href="#get-properties"><tt class="docutils literal"><span class="pre">get_properties</span></tt></a></li>
+<li><a class="reference internal" href="#get-keys"><tt class="docutils literal"><span class="pre">get_keys</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="client.html"
+                        title="previous chapter">RiakClient</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/bucket.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="client.html" title="RiakClient"
+             >previous</a> |</li>
+        <li><a href="index.html">Riak (Python binding) v1.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Daniel Lindsley.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>
